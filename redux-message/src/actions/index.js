@@ -1,0 +1,15 @@
+import { ADD_MESSAGE } from "./action-types";
+
+export function add(payload) {
+    return { type: ADD_MESSAGE, payload }
+}
+
+export function getData() {
+    return function (dispatch) {
+        return fetch("https://jsonplaceholder.typicode.com/posts")
+            .then(response => response.json())
+            .then(json => {
+                dispatch({ type: "DATA_LOADED", payload: json });
+            });
+    }
+}
